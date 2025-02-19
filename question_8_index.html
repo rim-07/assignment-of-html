@@ -1,0 +1,101 @@
+<!-- 8. Design a Product Listing or Student Grades Table Using HTML and CSS  
+   - Develop an HTML table for product listings or student grades with the following features:  
+     - A proper table structure, including a header row and data rows.  
+     - Alternating row colors and sorting functionality using CSS pseudo-classes (:hover, :nth-child, etc.).  
+     - A responsive design that adjusts for different screen sizes. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Grades Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #333;
+            color: white;
+            cursor: pointer;
+        }
+        tr:nth-child(even) {
+            background: #f2f2f2;
+        }
+        tr:hover {
+            background: #ddd;
+        }
+        @media (max-width: 600px) {
+            table {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Student Grades</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">Student Name</th>
+                    <th onclick="sortTable(1)">Subject</th>
+                    <th onclick="sortTable(2)">Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Alice Johnson</td>
+                    <td>Math</td>
+                    <td>A</td>
+                </tr>
+                <tr>
+                    <td>Bob Smith</td>
+                    <td>Science</td>
+                    <td>B</td>
+                </tr>
+                <tr>
+                    <td>Charlie Brown</td>
+                    <td>History</td>
+                    <td>A-</td>
+                </tr>
+                <tr>
+                    <td>Diana Ross</td>
+                    <td>English</td>
+                    <td>B+</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function sortTable(columnIndex) {
+            const table = document.querySelector("table tbody");
+            const rows = Array.from(table.rows);
+            const sortedRows = rows.sort((a, b) => a.cells[columnIndex].innerText.localeCompare(b.cells[columnIndex].innerText));
+            table.append(...sortedRows);
+        }
+    </script>
+</body>
+</html>
